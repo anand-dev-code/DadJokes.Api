@@ -1,5 +1,3 @@
--- Purpose: add indexes and uniqueness constraints in jokes_app schema
--- Run after 01_create_tables_schema.sql. Idempotent.
 
 BEGIN;
 

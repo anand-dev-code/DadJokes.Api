@@ -1,6 +1,4 @@
-﻿using DadJokes.Api.Models;
-using DadJokes.Api.Services;
-using Microsoft.AspNetCore.Http;
+﻿using DadJokes.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DadJokes.Api.Controllers

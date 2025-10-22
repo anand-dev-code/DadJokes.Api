@@ -1,6 +1,3 @@
--- name=src/JokesApi/sql/00_create_schema.sql
--- Purpose: create a dedicated schema 'jokes_app' for the application.
--- Run this first. This is idempotent.
 BEGIN;
 
 -- Ensure the UUID helper extension exists (extension is per-database, not per-schema).

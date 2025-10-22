@@ -1,6 +1,3 @@
--- Purpose: create tables inside the jokes_app schema
--- Run after 00_create_schema.sql. Idempotent.
-
 BEGIN;
 
 -- Table: jokes_app.jokes
