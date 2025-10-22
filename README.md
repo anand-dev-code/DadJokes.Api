@@ -53,6 +53,8 @@ POST /api/admin/jokes/custom
   ]
 }
 ```
+## Swagger Screenshot
+<img width="1907" height="879" alt="image" src="https://github.com/user-attachments/assets/2bf9907c-592a-4b1f-8f98-161f12019d5a" />
 
 ---
 
