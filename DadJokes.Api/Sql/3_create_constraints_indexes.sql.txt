@@ -1,0 +1,22 @@
+-- Purpose: add indexes and uniqueness constraints in jokes_app schema
+-- Run after 01_create_tables_schema.sql. Idempotent.
+
+BEGIN;
+
+-- Unique index to avoid duplicate external jokes (source + external_id)
+CREATE UNIQUE INDEX IF NOT EXISTS ux_jokes_source_externalid
+  ON jokes_app.jokes (source, external_id)
+  WHERE external_id IS NOT NULL;
+
+-- Prevent duplicate saved_groups for the same term and joke
+CREATE UNIQUE INDEX IF NOT EXISTS ux_saved_groups_term_joke
+  ON jokes_app.saved_groups (term, joke_id);
+
+-- Full-text GIN index on joke_text (optional, helpful for larger datasets)
+CREATE INDEX IF NOT EXISTS idx_jokes_text_tsv
+  ON jokes_app.jokes USING gin (to_tsvector('english', joke_text));
+
+-- Simple index on saved_groups.term for fast lookup
+CREATE INDEX IF NOT EXISTS idx_saved_groups_term ON jokes_app.saved_groups (term);
+
+COMMIT;

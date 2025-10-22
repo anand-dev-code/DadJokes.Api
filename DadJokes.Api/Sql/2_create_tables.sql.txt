@@ -1,0 +1,25 @@
+-- Purpose: create tables inside the jokes_app schema
+-- Run after 00_create_schema.sql. Idempotent.
+
+BEGIN;
+
+-- Table: jokes_app.jokes
+CREATE TABLE IF NOT EXISTS jokes_app.jokes (
+    id uuid PRIMARY KEY,
+    external_id text,            -- provider id (e.g., icanhazdadjoke id) when available
+    joke_text text NOT NULL,
+    source varchar(50) NOT NULL DEFAULT 'External', -- 'External' or 'Local'
+    word_count int NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- Table: jokes_app.saved_groups
+CREATE TABLE IF NOT EXISTS jokes_app.saved_groups (
+    id uuid PRIMARY KEY,
+    term text NOT NULL,
+    group_type varchar(20) NOT NULL, -- Short, Medium, Long
+    joke_id uuid NOT NULL REFERENCES jokes_app.jokes(id) ON DELETE CASCADE,
+    saved_at timestamptz NOT NULL DEFAULT now()
+);
+
+COMMIT;
